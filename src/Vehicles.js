@@ -43,10 +43,10 @@ function Vehicles() {
 		return array;
 	};
 
-	// const compareCards = (attribute) => {
-	// 	console.log(playerCurrent[attribute]);
-	// 	console.log(botCurrent[attribute]);
-	// };
+	const compareCards = (attribute) => {
+		console.log(cards.playerCurrent[attribute]);
+		console.log(cards.botCurrent[attribute]);
+	};
 
 	useEffect(() => {
 		async function fetchData() {
@@ -61,7 +61,10 @@ function Vehicles() {
 				});
 
 				if (res.data.next) {
-					setApi({ ...api, url: res.data.next.replace(/http:/g, "https:") });
+					setApi({
+						...api,
+						url: res.data.next.replace(/http:/g, "https:"),
+					});
 				} else {
 					setApi({ ...api, url: null, isLoading: false });
 					createHands();
@@ -93,11 +96,25 @@ function Vehicles() {
 				<div>
 					<Card card={cards.playerCurrent} />
 					<div>
-						{/* <button onClick={() => compareCards("cost_in_credits")}>Cost</button>
-						<button onClick={() => compareCards("length")}>Length</button>
-						<button onClick={() => compareCards("max_atmosphering_speed")}>Max speed</button>
-						<button onClick={() => compareCards("hyperdrive_rating")}>Hyperdrive</button>
-						<button onClick={() => compareCards("cargo_capacity")}>Cargo Capacity</button> */}
+						<button onClick={() => compareCards("cost_in_credits")}>
+							Cost
+						</button>
+						<button onClick={() => compareCards("length")}>
+							Length
+						</button>
+						<button
+							onClick={() =>
+								compareCards("max_atmosphering_speed")
+							}>
+							Max speed
+						</button>
+						<button
+							onClick={() => compareCards("hyperdrive_rating")}>
+							Hyperdrive
+						</button>
+						<button onClick={() => compareCards("cargo_capacity")}>
+							Cargo Capacity
+						</button>
 					</div>
 					<Card card={cards.botCurrent} />
 				</div>
